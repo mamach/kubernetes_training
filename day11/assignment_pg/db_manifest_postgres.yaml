@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: mahesh-db-postgres
+  name: mahesh-db-postgres
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mahesh-db-postgres
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: mahesh-db-postgres
+    spec:
+      containers:
+      - image: postgres:latest
+        name: postgres
+        ports:
+        - containerPort: 5432
+        resources: {}
+        env:
+        - name: POSTGRES_USER
+          # value: "Db9@123"
+          valueFrom: 
+            secretKeyRef:
+              name: maheshdb-root-cred-pg
+              key: maheshkey1_pg
+status: {}

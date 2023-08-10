@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: mahesh-mon
+  name: mahesh-mon
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mahesh-mon
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: mahesh-mon
+    spec:
+      volumes: 
+      - name: mahesh-socket-volume
+        hostPath:
+          path: /var/run/docker.sock
+          type: Socket 
+      containers:
+      - image: portainer/portainer-ce
+        name: portainer-ce
+        ports:
+        - containerPort: 9443
+        - containerPort: 9000
+        volumeMounts:
+        - name: mahesh-socket-volume
+          mountPath: /var/run/docker.sock
+        resources: {}
+status: {}

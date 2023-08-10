@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: mahesh-webapp
+  name: mahesh-webapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mahesh-webapp
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: mahesh-webapp
+    spec:
+      containers:
+      - image: wordpress:6.2.1-apache
+        name: wordpress
+        ports:
+        - containerPort: 80
+        resources: {}
+        envFrom: 
+        - secretRef: 
+            name: mahesh-user-cred1
+        - configMapRef:
+            name: mahesh-web-config
+status: {}

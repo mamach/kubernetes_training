@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  creationTimestamp: null
+  labels:
+    app: mahesh-d1
+  name: mahesh-d1
+spec:
+  selector:
+    matchLabels:
+      app: mahesh-d1
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: mahesh-d1
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+        ports:
+        - containerPort: 80
+        resources: {}
+status: {}

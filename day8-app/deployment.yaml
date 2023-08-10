@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: mahesh-java-app
+  name: mahesh-java-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mahesh-java-app
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: mahesh-java-app
+    spec:
+      containers:
+      - image: dockerashu/nodeapp:v1
+        name: ashu-javaweb
+        ports:
+        - containerPort: 8080
+        resources: {}
+status: {}

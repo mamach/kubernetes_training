@@ -1,0 +1,4 @@
+AH00558: httpd: Could not reliably determine the server's fully qualified domain name, using 192.168.104.13. Set the 'ServerName' directive globally to suppress this message
+AH00558: httpd: Could not reliably determine the server's fully qualified domain name, using 192.168.104.13. Set the 'ServerName' directive globally to suppress this message
+[Tue Jul 25 13:33:29.699445 2023] [mpm_event:notice] [pid 1:tid 140656579987328] AH00489: Apache/2.4.57 (Unix) configured -- resuming normal operations
+[Tue Jul 25 13:33:29.699585 2023] [core:notice] [pid 1:tid 140656579987328] AH00094: Command line: 'httpd -D FOREGROUND'

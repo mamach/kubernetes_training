@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: maheshdb
+  name: maheshdb
+spec:
+  volumes: 
+  - name: mahesh-volx9
+    hostPath:
+      path: /data/new/maheshdb
+      type: DirectoryOrCreate
+  containers:
+  - image: alpine 
+    name: maheshc1
+    command: ['sh','-c','sleep 100000']
+    volumeMounts:
+    - name: mahesh-volx9
+      mountPath: /mnt/data/
+      readOnly: true 
+  - image: mysql
+    name: maheshdb
+    ports:
+    - containerPort: 3306
+    resources: {}
+    env: 
+    - name: MYSQL_ROOT_PASSWORD
+      value: RootDb@1234
+    volumeMounts:
+    - name:  mahesh-volx9
+      mountPath: /var/lib/mysql/
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}

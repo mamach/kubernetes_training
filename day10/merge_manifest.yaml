@@ -1,0 +1,65 @@
+# Deployment manifest
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: mahesh-app
+  name: mahesh-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mahesh-app
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: mahesh-app
+    spec:
+      imagePullSecrets:
+      - name: mahesh-img-secret
+      containers:
+      - image: cloud4c.azurecr.io/day10-web:uiv1
+        name: day10-web
+        ports:
+        - containerPort: 80
+        resources: {}
+status: {}
+
+
+# Create service of nodeport type manifest
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: mahesh-lb0
+  name: mahesh-lb0
+spec:
+  ports:
+  - name: 80-80
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector: # pod finder using pod label
+    app: mahesh-app
+  type: NodePort
+status:
+  loadBalancer: {}
+
+# create  secret manifest which will be used for deployment
+
+--- 
+apiVersion: v1
+data:
+  .dockerconfigjson: eyJhdXRocyI6eyJjbG91ZDRjLmF6dXJlY3IuaW8iOnsidXNlcm5hbWUiOiJjbG91ZDRjIiwicGFzc3dvcmQiOiI5MnhQREk1cC9Qc1YzWlFKSDZhcXAybHIvYTVNZlVlczR1bXJPbnlZV0QrQUNSQ25hYmRvIiwiYXV0aCI6IlkyeHZkV1EwWXpvNU1uaFFSRWsxY0M5UWMxWXpXbEZLU0RaaGNYQXliSEl2WVRWTlpsVmxjelIxYlhKUGJubFpWMFFyUVVOU1EyNWhZbVJ2In19fQ==
+kind: Secret
+metadata:
+  creationTimestamp: null
+  name: mahesh-img-secret
+type: kubernetes.io/dockerconfigjson

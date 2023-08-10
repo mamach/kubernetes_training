@@ -1,0 +1,10 @@
+apiVersion: v1 
+kind: Pod # req is about pod
+metadata: 
+  name: mahesh-nodeapp-pod1
+spec: # everything we need in pod are written here
+  containers: 
+    - name: maheshc1
+      image: docker.io/maheshc4c/nodeapp:v1
+      ports:
+      - containerPort: 3000

@@ -1,0 +1,7 @@
+apiVersion: v1
+data:
+  maheshdbn: wordpress
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: mahesh-db-name

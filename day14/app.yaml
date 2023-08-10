@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: mahesh-webapp
+  name: mahesh-webapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mahesh-webapp
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: mahesh-webapp
+    spec:
+      containers:
+      - image: dockerashu/reactapp:version1
+        name: reactapp
+        ports:
+        - containerPort: 3000
+        resources: 
+          requests:
+            memory: 100M
+            cpu: 100m
+          limits:
+            memory: 400M
+            cpu: 200m
+status: {}

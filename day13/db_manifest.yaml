@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: mahesh-db
+  name: mahesh-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mahesh-db
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: mahesh-db
+    spec:
+      containers:
+      - image: mysql:8.0
+        name: mysql
+        ports:
+        - containerPort: 3306
+        resources: {}
+        env:
+        - name: MYSQL_DATABASE
+          # value: "Db9@123"
+          valueFrom: 
+            configMapKeyRef:
+              name: mahesh-db-name
+              key: maheshdbn
+        - name: MYSQL_ROOT_PASSWORD
+          # value: "Db9@123"
+          valueFrom: 
+            secretKeyRef:
+              name: maheshdb-root-cred
+              key: maheshkey1
+        envFrom:
+        - secretRef:
+            name: mahesh-user-cred
+status: {}

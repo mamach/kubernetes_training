@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: mahesh-react-app
+  name: mahesh-react-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: mahesh-react-app
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: mahesh-react-app
+    spec:
+      containers:
+      - image: cloud4c.azurecr.io/reactjs:v1.1
+        name: reactjs
+        ports:
+        - containerPort: 3000
+        resources: {}
+status: {}

@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: mahesh-adminer
+  name: mahesh-adminer
+spec:
+  containers:
+  - image: adminer:latest
+    name: mahesh-adminer
+    ports:
+    - containerPort: 8080
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}

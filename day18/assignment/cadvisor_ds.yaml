@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: cadvisor
+spec:
+  selector:
+    matchLabels:
+      app: cadvisor
+  template:
+    metadata:
+      labels:
+        app: cadvisor
+    spec:
+      containers:
+      - name: cadvisor
+        image: k8s.gcr.io/cadvisor:v0.41.0  # Use the desired cAdvisor version
+        ports:
+        - containerPort: 8080
+          hostPort: 8080  # Optional: Expose cAdvisor's web UI on the host
+        resources:
+          limits:
+            cpu: 100m
+            memory: 200Mi
+        volumeMounts:
+        - name: rootfs
+          mountPath: /home/mahesh
+          readOnly: true
+        - name: var-run
+          mountPath: /var/run
+          readOnly: false
+      volumes:
+      - name: rootfs
+        hostPath:
+          path: /
+      - name: var-run
+        hostPath:
+          path: /var/run
+

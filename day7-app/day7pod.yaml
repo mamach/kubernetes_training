@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: mahesh-day7pod
+  name: mahesh-day7pod
+spec:
+  containers:
+  - image: docker.io/maheshc4c/mahesh-day7-app:v1
+    name: mahesh-day7pod
+    ports:
+    - containerPort: 80
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}

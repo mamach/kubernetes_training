@@ -1,0 +1,18 @@
+apiVersion: v1 
+kind: Pod # req is about pod
+metadata: 
+  name: mahesh-task-pod
+spec: # everything we need in pod are written here
+  volumes:
+  - name: mahesh-db-volx1
+    persistentVolumeClaim:
+      claimName: mahesh-cliam-new2
+  containers: 
+  - name: mahesh-task-container-mysql
+    image: docker.io/mysql:8.0
+    env:
+    - name: MYSQL_ROOT_PASSWORD
+      value: RootPass@123
+    volumeMounts:
+    - name: mahesh-db-volx1
+      mountPath: /var/lib/mysql/

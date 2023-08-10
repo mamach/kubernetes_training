@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: mahesh-app-health
+  name: mahesh-app-health
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mahesh-app-health
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: mahesh-app-health
+    spec:
+      containers:
+      - image: dockerashu/ashuweb-ui:app4
+        name: ashuweb-ui
+        ports:
+        - containerPort: 80
+        resources: {}
+        readinessProbe:
+          httpGet:
+            path: /health1.html
+            port: 80
+          periodSeconds: 3
+          initialDelaySeconds: 5
+status: {}

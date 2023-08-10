@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: mahesh-secure-app
+  name: mahesh-secure-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mahesh-secure-app
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: mahesh-secure-app
+    spec:
+      volumes: 
+      - name: mahesh-ng-vol
+        configMap:
+          name: mahesh-nginx-conf
+      containers:
+      - image: nginx
+        name: nginx
+        ports:
+        - containerPort: 81
+        resources: {}
+        volumeMounts:
+        - name: mahesh-ng-vol
+          mountPath: /etc/nginx/conf.d/
+status: {}
